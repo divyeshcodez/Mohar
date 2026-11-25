@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --pixel-blue: #1700d1;
+    --pixel-yellow: #fdff00;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    background-color: #000000;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Subtle atmospheric animations (compositor-only, prefers-reduced-motion compliant) */
+@keyframes bulb-float {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0) rotate(0.7deg);
+  }
+}
+
+@keyframes character-breathe {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0);
+  }
+  50% {
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+@keyframes ripple-pulse-a {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.82;
+  }
+  50% {
+    transform: scale(1.035);
+    opacity: 0.56;
+  }
+}
+
+@keyframes ripple-pulse-b {
+  0%, 100% {
+    transform: scale(1.02);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(0.975);
+    opacity: 0.85;
+  }
+}
+
+@keyframes bg-drift {
+  0%, 100% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.035) translate3d(-0.4%, -0.25%, 0);
+  }
+}
+
+.animate-bulb-float {
+  animation: bulb-float 8.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-character-breathe {
+  animation: character-breathe 7.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-ripple-a {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ripple-pulse-a 5.4s ease-in-out infinite;
+}
+
+.animate-ripple-b {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ripple-pulse-b 6.6s ease-in-out infinite;
+}
+
+.animate-bg-drift {
+  animation: bg-drift 28s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-bulb-float,
+  .animate-character-breathe,
+  .animate-ripple-a,
+  .animate-ripple-b,
+  .animate-bg-drift {
+    animation: none !important;
+  }
+}
+
+/* Frosted glass floating dock matching reference aesthetic */
+.mohar-dock-glass {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 240, 232, 0.32) 0%,
+    rgba(220, 212, 198, 0.24) 100%
+  );
+  backdrop-filter: blur(12px) saturate(114%);
+  -webkit-backdrop-filter: blur(12px) saturate(114%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 12px 32px rgba(18, 14, 9, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+/* Glossy skeuomorphic app icon highlight sheen */
+.dock-icon-gloss::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.62) 0%,
+    rgba(255, 255, 255, 0.16) 44%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  pointer-events: none;
+}
+
+/* Subtle top specular arc inside each glossy icon */
+.dock-icon-gloss::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  right: 4px;
+  height: 44%;
+  border-radius: 10px 10px 50% 50% / 10px 10px 26% 26%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.48) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  pointer-events: none;
+}
