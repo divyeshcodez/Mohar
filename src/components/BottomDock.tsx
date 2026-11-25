@@ -7,109 +7,142 @@ interface BottomDockProps {
 }
 
 const ICON_BACKGROUNDS: Record<DockAppId, string> = {
-  notes: 'linear-gradient(180deg, #FFF052 0%, #FACC15 48%, #B47B00 100%)',
-  browser: 'linear-gradient(180deg, #74D2FF 0%, #1DA1F2 50%, #0369A1 100%)',
-  camera: 'linear-gradient(180deg, #D4D7DC 0%, #8E95A0 52%, #474D56 100%)',
-  gallery: 'linear-gradient(180deg, #FF7AE0 0%, #FF1CAE 52%, #C90083 100%)',
-  calendar: 'linear-gradient(180deg, #FF806E 0%, #F43F2E 50%, #B91C1C 100%)',
-  messages: 'linear-gradient(180deg, #86F77B 0%, #2BD93B 50%, #15803D 100%)',
-  favorites: 'linear-gradient(180deg, #FFB357 0%, #FF6B14 52%, #C2410C 100%)',
-  mail: 'linear-gradient(180deg, #EB82FF 0%, #C62EFF 52%, #86198F 100%)',
+  'our-story': 'linear-gradient(180deg, #FFF052 0%, #FACC15 48%, #B47B00 100%)',
+  explore: 'linear-gradient(180deg, #74D2FF 0%, #1DA1F2 50%, #0369A1 100%)',
+  launch: 'linear-gradient(180deg, #D4D7DC 0%, #8E95A0 52%, #474D56 100%)',
+  trust: 'linear-gradient(180deg, #FF7AE0 0%, #FF1CAE 52%, #C90083 100%)',
+  'ending-soon': 'linear-gradient(180deg, #FF806E 0%, #F43F2E 50%, #B91C1C 100%)',
+  'how-it-works': 'linear-gradient(180deg, #86F77B 0%, #2BD93B 50%, #15803D 100%)',
+  'my-backed': 'linear-gradient(180deg, #FFB357 0%, #FF6B14 52%, #C2410C 100%)',
+  'talk-to-us': 'linear-gradient(180deg, #EB82FF 0%, #C62EFF 52%, #86198F 100%)',
 };
 
 function DockGlyph({ id }: { id: DockAppId }) {
   switch (id) {
-    case 'notes':
+    /* 1. Mango blossom -> Our Story */
+    case 'our-story':
       return (
-        <svg viewBox="0 0 48 48" className="w-[64%] h-[64%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]" fill="none">
-          {/* Notepad page */}
-          <rect x="8" y="8" width="26" height="32" rx="4" fill="#FFFFFF" />
-          <line x1="13" y1="15" x2="27" y2="15" stroke="#D49A00" strokeWidth="2.6" strokeLinecap="round" />
-          <line x1="13" y1="21.5" x2="25" y2="21.5" stroke="#D49A00" strokeWidth="2.6" strokeLinecap="round" />
-          <line x1="13" y1="28" x2="22" y2="28" stroke="#D49A00" strokeWidth="2.6" strokeLinecap="round" />
-          <line x1="13" y1="34" x2="20" y2="34" stroke="#D49A00" strokeWidth="2.6" strokeLinecap="round" />
-          {/* Diagonal pencil */}
-          <path
-            d="M23.5 32.5L36.8 19.2C37.8 18.2 39.4 18.2 40.4 19.2L41.1 19.9C42.1 20.9 42.1 22.5 41.1 23.5L27.8 36.8L21.5 38.8L23.5 32.5Z"
-            fill="#FFFFFF"
-            stroke="#C68900"
-            strokeWidth="2"
-            strokeLinejoin="round"
-          />
+        <svg viewBox="0 0 48 48" className="w-[70%] h-[70%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]" fill="none">
+          {/* 5 delicate mango blossom petals radiating from center */}
+          <ellipse cx="24" cy="13.5" rx="4.4" ry="7.4" fill="#FFFFFF" />
+          <ellipse cx="34.2" cy="20.6" rx="4.4" ry="7.4" transform="rotate(72 34.2 20.6)" fill="#FFFFFF" />
+          <ellipse cx="30.3" cy="32.4" rx="4.4" ry="7.4" transform="rotate(144 30.3 32.4)" fill="#FFFFFF" />
+          <ellipse cx="17.7" cy="32.4" rx="4.4" ry="7.4" transform="rotate(216 17.7 32.4)" fill="#FFFFFF" />
+          <ellipse cx="13.8" cy="20.6" rx="4.4" ry="7.4" transform="rotate(288 13.8 20.6)" fill="#FFFFFF" />
+          {/* Warm golden blossom center & tiny bud accents */}
+          <circle cx="24" cy="24" r="5" fill="#D99B00" />
+          <circle cx="24" cy="24" r="2.2" fill="#FFF7CC" />
         </svg>
       );
 
-    case 'browser':
+    /* 2. Compass -> Explore */
+    case 'explore':
       return (
         <svg viewBox="0 0 48 48" className="w-[70%] h-[70%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]" fill="none">
           <circle cx="24" cy="24" r="18" fill="#FFFFFF" fillOpacity="0.96" />
           <circle cx="24" cy="24" r="14.5" stroke="#0EA5E9" strokeWidth="2" strokeOpacity="0.45" />
-          {/* Tick marks */}
           <line x1="24" y1="8.5" x2="24" y2="12" stroke="#0284C7" strokeWidth="2" strokeLinecap="round" />
           <line x1="24" y1="36" x2="24" y2="39.5" stroke="#0284C7" strokeWidth="2" strokeLinecap="round" />
           <line x1="8.5" y1="24" x2="12" y2="24" stroke="#0284C7" strokeWidth="2" strokeLinecap="round" />
           <line x1="36" y1="24" x2="39.5" y2="24" stroke="#0284C7" strokeWidth="2" strokeLinecap="round" />
-          {/* Compass needle */}
           <polygon points="33,15 26.8,26.8 21.2,21.2" fill="#0284C7" />
           <polygon points="15,33 21.2,21.2 26.8,26.8" fill="#7DD3FC" stroke="#0284C7" strokeWidth="1.2" strokeLinejoin="round" />
           <circle cx="24" cy="24" r="2.2" fill="#FFFFFF" />
         </svg>
       );
 
-    case 'camera':
+    /* 3. Seed -> Launch */
+    case 'launch':
       return (
-        <svg viewBox="0 0 48 48" className="w-[70%] h-[70%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]" fill="none">
+        <svg viewBox="0 0 48 48" className="w-[68%] h-[68%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]" fill="none">
+          {/* Botanical teardrop seed with delicate inner germination line */}
           <path
-            d="M17.5 11.5L19.6 8.5H28.4L30.5 11.5H37.5C40 11.5 42 13.5 42 16V34C42 36.5 40 38.5 37.5 38.5H10.5C8 38.5 6 36.5 6 34V16C6 13.5 8 11.5 10.5 11.5H17.5Z"
+            d="M24 8C24 8 36 18.2 36 28.2C36 35 30.6 40 24 40C17.4 40 12 35 12 28.2C12 18.2 24 8 24 8Z"
             fill="#FFFFFF"
           />
-          <circle cx="24" cy="25" r="8.8" fill="#6B7280" />
-          <circle cx="24" cy="25" r="5.6" fill="#FFFFFF" />
-          <circle cx="24" cy="25" r="3" fill="#6B7280" />
-          <circle cx="35.5" cy="16.5" r="1.8" fill="#6B7280" />
+          <path
+            d="M24 17V34"
+            stroke="#5B626D"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+          />
+          <path
+            d="M24 27C24 23.5 27.5 21 30.5 21"
+            stroke="#5B626D"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+          <path
+            d="M24 30.5C24 27.2 20.8 25 18 25"
+            stroke="#5B626D"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
         </svg>
       );
 
-    case 'gallery':
+    /* 4. Shield -> Trust */
+    case 'trust':
       return (
         <svg viewBox="0 0 48 48" className="w-[68%] h-[68%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]" fill="none">
-          <rect x="7" y="9" width="34" height="30" rx="5" fill="#FFFFFF" />
-          {/* Inner framed sky/mountain cutout */}
-          <rect x="11" y="13" width="26" height="22" rx="2.5" fill="#FCE7F3" />
-          <circle cx="30" cy="18.5" r="3.2" fill="#EC4899" />
-          <path d="M11 35L19.5 23.5L25.5 30.5L29.5 26L37 35H11Z" fill="#EC4899" />
-        </svg>
-      );
-
-    case 'calendar':
-      return (
-        <svg viewBox="0 0 48 48" className="w-[66%] h-[66%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]" fill="none">
-          {/* Top binding tabs */}
-          <rect x="13.5" y="6.5" width="4.5" height="8" rx="2.2" fill="#FFFFFF" />
-          <rect x="30" y="6.5" width="4.5" height="8" rx="2.2" fill="#FFFFFF" />
-          {/* Header & crisp white calendar body matching reference */}
-          <rect x="8" y="10.5" width="32" height="30.5" rx="4.5" fill="#FFFFFF" />
-          <line x1="8" y1="19.5" x2="40" y2="19.5" stroke="#EF4444" strokeWidth="3.2" />
-        </svg>
-      );
-
-    case 'messages':
-      return (
-        <svg viewBox="0 0 48 48" className="w-[70%] h-[70%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]" fill="none">
           <path
-            d="M24 9C14.1 9 6 15.5 6 23.5C6 27.6 8.1 31.3 11.6 33.9L9.6 40.2L17.4 36.9C19.5 37.6 21.7 38 24 38C33.9 38 42 31.5 42 23.5C42 15.5 33.9 9 24 9Z"
+            d="M24 7L38 12.6V23.4C38 32.4 31.9 38.9 24 41.5C16.1 38.9 10 32.4 10 23.4V12.6L24 7Z"
             fill="#FFFFFF"
           />
-          <circle cx="16.8" cy="23.5" r="2.7" fill="#22C55E" />
-          <circle cx="24" cy="23.5" r="2.7" fill="#22C55E" />
-          <circle cx="31.2" cy="23.5" r="2.7" fill="#22C55E" />
+          <path
+            d="M17.8 24.4L22 28.6L30.8 19.6"
+            stroke="#EC4899"
+            strokeWidth="3.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       );
 
-    case 'favorites':
+    /* 5. Clock -> Ending soon */
+    case 'ending-soon':
+      return (
+        <svg viewBox="0 0 48 48" className="w-[70%] h-[70%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]" fill="none">
+          <circle cx="24" cy="24" r="17.5" fill="#FFFFFF" />
+          <circle cx="24" cy="24" r="14" stroke="#FCA5A5" strokeWidth="1.6" />
+          <path
+            d="M24 14.5V24L30.5 28"
+            stroke="#DC2626"
+            strokeWidth="3.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="24" cy="24" r="2.2" fill="#DC2626" />
+        </svg>
+      );
+
+    /* 6. Gold coin (mohar) -> How it works */
+    case 'how-it-works':
+      return (
+        <svg viewBox="0 0 48 48" className="w-[72%] h-[72%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]" fill="none">
+          {/* Outer Mohar coin silhouette */}
+          <circle cx="24" cy="24" r="17.5" fill="#FFF8D6" stroke="#FFFFFF" strokeWidth="1.6" />
+          {/* Inner antique stamped beaded ring */}
+          <circle
+            cx="24"
+            cy="24"
+            r="13"
+            stroke="#16A34A"
+            strokeWidth="2"
+            strokeDasharray="2.5 2.5"
+          />
+          {/* Central stamped royal Mohar star/crest */}
+          <path
+            d="M24 14.8L26.6 20.6L32.8 21.3L28.1 25.5L29.4 31.6L24 28.4L18.6 31.6L19.9 25.5L15.2 21.3L21.4 20.6L24 14.8Z"
+            fill="#16A34A"
+          />
+        </svg>
+      );
+
+    /* 7. Heart -> My Backed */
+    case 'my-backed':
       return (
         <svg viewBox="0 0 48 48" className="w-[74%] h-[74%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]" fill="none">
-          {/* Exact reference icon #7: bright white circular medallion with orange heart inside */}
           <circle cx="24" cy="24" r="18.5" fill="#FFFFFF" />
           <path
             d="M24 34.4C24 34.4 13.5 27.9 13.5 20.6C13.5 17.2 16.1 14.6 19.3 14.6C21.3 14.6 23 15.7 24 17.3C25 15.7 26.7 14.6 28.7 14.6C31.9 14.6 34.5 17.2 34.5 20.6C34.5 27.9 24 34.4 24 34.4Z"
@@ -118,7 +151,8 @@ function DockGlyph({ id }: { id: DockAppId }) {
         </svg>
       );
 
-    case 'mail':
+    /* 8. Envelope -> Talk to us */
+    case 'talk-to-us':
       return (
         <svg viewBox="0 0 48 48" className="w-[70%] h-[70%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]" fill="none">
           <rect x="6" y="11" width="36" height="26" rx="4.5" fill="#FFFFFF" />
@@ -152,17 +186,17 @@ export function BottomDock({ activeApp, onSelectApp }: BottomDockProps) {
           const isActive = activeApp === app.id;
           return (
             <div key={app.id} className="group relative flex flex-col items-center">
-              {/* Hover & focus tooltip */}
+              {/* Hover & focus tooltip showing exact MoHaR dock name */}
               <span
                 role="tooltip"
-                className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-stone-950/88 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-stone-100 opacity-0 translate-y-1 shadow-lg backdrop-blur-md transition-all duration-150 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
+                className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-stone-950/90 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-stone-100 opacity-0 translate-y-1 shadow-lg backdrop-blur-md transition-all duration-150 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
               >
                 {app.label}
               </span>
 
               <button
                 type="button"
-                aria-label={`Open ${app.label}`}
+                aria-label={app.label}
                 aria-pressed={isActive}
                 onClick={() => onSelectApp(app.id)}
                 style={{ background: ICON_BACKGROUNDS[app.id] }}

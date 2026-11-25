@@ -1,12 +1,12 @@
 export type DockAppId =
-  | 'notes'
-  | 'browser'
-  | 'camera'
-  | 'gallery'
-  | 'calendar'
-  | 'messages'
-  | 'favorites'
-  | 'mail';
+  | 'our-story'
+  | 'explore'
+  | 'launch'
+  | 'trust'
+  | 'ending-soon'
+  | 'how-it-works'
+  | 'my-backed'
+  | 'talk-to-us';
 
 export interface DockAppItem {
   id: DockAppId;
@@ -16,37 +16,17 @@ export interface DockAppItem {
   accentHex: string;
 }
 
-export type ProductCategory = 'All' | 'Creative' | 'Productivity' | 'Communication';
+export type ProductCategory = 'All' | 'Design' | 'Craft' | 'Tech';
 
 export interface MoharProduct {
   id: string;
   name: string;
+  creator: string;
   category: Exclude<ProductCategory, 'All'>;
-  releaseTag: string;
+  earlyBirdPrice: string;
+  fundedPercent: number;
+  hoursLeft?: number;
   summary: string;
-  dockAppId: DockAppId;
-}
-
-export interface NoteEntry {
-  id: string;
-  title: string;
-  body: string;
-  updatedAt: string;
-}
-
-export interface MessageEntry {
-  id: string;
-  sender: string;
-  text: string;
-  time: string;
-  fromMe?: boolean;
-}
-
-export interface CalendarEvent {
-  id: string;
-  date: string;
-  title: string;
-  stage: string;
 }
 
 export interface AuthFormInput {
@@ -61,161 +41,138 @@ export interface AuthValidationResult {
   errors: Partial<Record<'name' | 'email' | 'password', string>>;
 }
 
+export interface CreatorApplicationInput {
+  creatorName: string;
+  productTitle: string;
+  goalAmount: string;
+}
+
+export interface CreatorValidationResult {
+  valid: boolean;
+  errors: Partial<Record<'creatorName' | 'productTitle' | 'goalAmount', string>>;
+}
+
 export const DOCK_APPS: DockAppItem[] = [
   {
-    id: 'notes',
-    label: 'Notes',
-    subtitle: 'Writing & Field Sketches',
-    description: 'Draft unhurried product essays, release outlines, and quiet studio notes.',
+    id: 'our-story',
+    label: 'Our Story',
+    subtitle: 'Mango Blossom · Manifesto',
+    description: 'Why MoHaR exists: bloom first, let people believe in it, and only then start the factory.',
     accentHex: '#EAB308',
   },
   {
-    id: 'browser',
-    label: 'Browser',
-    subtitle: 'Compass & Discovery',
-    description: 'Explore curated references, classical archives, and shipped web experiments.',
+    id: 'explore',
+    label: 'Explore',
+    subtitle: 'Compass · Discover Drops',
+    description: 'Browse original Indian creator ideas and pre-order at early-bird prices.',
     accentHex: '#0EA5E9',
   },
   {
-    id: 'camera',
-    label: 'Camera',
-    subtitle: 'Visual Capture',
-    description: 'Frame atmospheric studies and capture visual snapshots for your moodboard.',
+    id: 'launch',
+    label: 'Launch',
+    subtitle: 'Seed · Creator Launchpad',
+    description: 'Share your product idea with zero upfront investment and let backers fund batch one.',
     accentHex: '#6B7280',
   },
   {
-    id: 'gallery',
-    label: 'Gallery',
-    subtitle: 'Photos & Paintings',
-    description: 'Inspect curated visual artifacts, Renaissance studies, and interface stills.',
+    id: 'trust',
+    label: 'Trust',
+    subtitle: 'Shield · Backer Protection',
+    description: 'Your money stays protected in escrow and is automatically refunded if a goal is missed.',
     accentHex: '#EC4899',
   },
   {
-    id: 'calendar',
-    label: 'Calendar',
-    subtitle: 'Seasons & Shipping Dates',
-    description: 'Track seasonal blooms, studio critiques, and upcoming launch windows.',
+    id: 'ending-soon',
+    label: 'Ending soon',
+    subtitle: 'Clock · Final Hours',
+    description: 'Catch blooming campaigns in their final hours before early-bird pre-orders close.',
     accentHex: '#EF4444',
   },
   {
-    id: 'messages',
-    label: 'Messages',
-    subtitle: 'Studio Dispatches',
-    description: 'Exchange concise notes with collaborators across design and engineering.',
+    id: 'how-it-works',
+    label: 'How it works',
+    subtitle: 'Gold Coin (Mohar) · Guide',
+    description: 'From first idea to factory batch: how creators launch and backers pre-order safely.',
     accentHex: '#22C55E',
   },
   {
-    id: 'favorites',
-    label: 'Favorites',
-    subtitle: 'Saved Inspirations',
-    description: 'Keep treasured references, prototypes, and tools pinned close at hand.',
+    id: 'my-backed',
+    label: 'My Backed',
+    subtitle: 'Heart · Your Pre-Orders',
+    description: 'Track every creator product you have backed and watch its batch progress bloom.',
     accentHex: '#F97316',
   },
   {
-    id: 'mail',
-    label: 'Mail',
-    subtitle: 'Letters & Releases',
-    description: 'Compose thoughtful release letters and connect directly with the MoHaR team.',
+    id: 'talk-to-us',
+    label: 'Talk to us',
+    subtitle: 'Envelope · Team Mohar',
+    description: 'Questions about backing or launching your first batch? Write directly to Team Mohar.',
     accentHex: '#A855F7',
   },
 ];
 
 export const MOHAR_PRODUCTS: MoharProduct[] = [
   {
-    id: 'folio-notes',
-    name: 'MoHaR Folio',
-    category: 'Productivity',
-    releaseTag: 'Writing Suite · Web',
-    summary: 'Distraction-free manuscript and specification editor crafted for makers who think in paragraphs before tickets.',
-    dockAppId: 'notes',
+    id: 'brass-dripper',
+    name: 'Kansa Pour-Over Dripper',
+    creator: 'Aarav Metalworks · Pune',
+    category: 'Craft',
+    earlyBirdPrice: '₹2,499',
+    fundedPercent: 86,
+    hoursLeft: 14,
+    summary: 'Hand-spun bell-metal coffee dripper engineered for slow heat retention and clean extraction.',
   },
   {
-    id: 'atelier-gallery',
-    name: 'Atelier Canvas',
-    category: 'Creative',
-    releaseTag: 'Visual Archive · Studio',
-    summary: 'Organize classical references, interface frames, and color studies into museum-grade visual boards.',
-    dockAppId: 'gallery',
+    id: 'terracotta-lamp',
+    name: 'Diya Table Lamp 01',
+    creator: 'Mitti Studio · Jaipur',
+    category: 'Design',
+    earlyBirdPrice: '₹3,200',
+    fundedPercent: 94,
+    hoursLeft: 9,
+    summary: 'Slip-cast terracotta diffuser paired with warm dimmable LED filament lighting.',
   },
   {
-    id: 'compass-index',
-    name: 'Compass Index',
-    category: 'Creative',
-    releaseTag: 'Discovery · Curated',
-    summary: 'A calm spatial browser for collecting timeless typography, art history, and web craft.',
-    dockAppId: 'browser',
+    id: 'pocket-synth',
+    name: 'Swara Pocket Synth',
+    creator: 'Dhwani Labs · Bengaluru',
+    category: 'Tech',
+    earlyBirdPrice: '₹6,800',
+    fundedPercent: 72,
+    hoursLeft: 26,
+    summary: 'Tactile microtonal synthesizer designed for Indian ragas and portable beatmaking.',
   },
   {
-    id: 'solstice-calendar',
-    name: 'Solstice Rhythm',
-    category: 'Productivity',
-    releaseTag: 'Release Cadence · Team',
-    summary: 'Plan unhurried bloom cycles and crisp shipping milestones without noisy sprint dashboards.',
-    dockAppId: 'calendar',
+    id: 'khadi-folio',
+    name: 'Raw Khadi Carry Folio',
+    creator: 'Tana Bana · Ahmedabad',
+    category: 'Craft',
+    earlyBirdPrice: '₹1,850',
+    fundedPercent: 108,
+    summary: 'Heavyweight handloom cotton sleeve with vegetable-tanned leather spine and brass clasp.',
   },
   {
-    id: 'aperture-study',
-    name: 'Aperture Lens',
-    category: 'Creative',
-    releaseTag: 'Capture · Light',
-    summary: 'Quickly capture visual inspiration and warm tonal palettes directly into your workspace.',
-    dockAppId: 'camera',
+    id: 'monsoon-clock',
+    name: 'Monsoon Flip Desk Clock',
+    creator: 'Kala Mechanical · Mumbai',
+    category: 'Design',
+    earlyBirdPrice: '₹4,150',
+    fundedPercent: 64,
+    hoursLeft: 19,
+    summary: 'Quiet split-flap mechanical clock in brushed aluminum with custom Devanagari numerals.',
   },
   {
-    id: 'courier-mail',
-    name: 'Courier Dispatch',
-    category: 'Communication',
-    releaseTag: 'Letters · Audience',
-    summary: 'Send essays, changelogs, and seasonal dispatches that read like keepsake letters.',
-    dockAppId: 'mail',
-  },
-  {
-    id: 'parlor-messages',
-    name: 'Parlor Thread',
-    category: 'Communication',
-    releaseTag: 'Studio Chat · Calm',
-    summary: 'Asynchronous collaborator threads built around thoughtful critique rather than constant pings.',
-    dockAppId: 'messages',
+    id: 'modular-dock',
+    name: 'Chitra Analog Film Scanner',
+    creator: 'Nayan Optics · Chennai',
+    category: 'Tech',
+    earlyBirdPrice: '₹5,400',
+    fundedPercent: 81,
+    summary: 'Compact 35mm macro film holder with CRI-98 backlight made for home darkrooms.',
   },
 ];
 
-export const INITIAL_NOTES: NoteEntry[] = [
-  {
-    id: 'n-1',
-    title: 'Bloom First Manifesto',
-    body: 'Let ideas mature in quiet light before rushing them to production. Taste compounds when given space.',
-    updatedAt: 'Today, 09:40',
-  },
-  {
-    id: 'n-2',
-    title: 'Autumn Release Checklist',
-    body: 'Finalize pixel-bordered navigation, polish dock tooltips, and verify responsive proportions.',
-    updatedAt: 'Yesterday',
-  },
-];
-
-export const INITIAL_MESSAGES: MessageEntry[] = [
-  {
-    id: 'm-1',
-    sender: 'Aria · Design',
-    text: 'The pastoral oil palette balances the electric blue pixel borders beautifully.',
-    time: '10:12',
-  },
-  {
-    id: 'm-2',
-    sender: 'Kenji · Engineering',
-    text: 'All eight dock modules are live and ready for the showcase launch.',
-    time: '10:18',
-  },
-];
-
-export const INITIAL_EVENTS: CalendarEvent[] = [
-  { id: 'e-1', date: 'Nov 28', title: 'MoHaR Autumn Showcase', stage: 'Public Release' },
-  { id: 'e-2', date: 'Dec 04', title: 'Typography & Pixel Craft Critique', stage: 'Studio Review' },
-  { id: 'e-3', date: 'Dec 15', title: 'Winter Collection Bloom Window', stage: 'Exploration' },
-];
-
-export const INITIAL_FAVORITE_IDS: string[] = ['folio-notes', 'atelier-gallery', 'courier-mail'];
+export const INITIAL_BACKED_IDS: string[] = ['brass-dripper', 'terracotta-lamp'];
 
 export function filterProducts(
   products: MoharProduct[],
@@ -225,6 +182,19 @@ export function filterProducts(
     return products;
   }
   return products.filter((item) => item.category === category);
+}
+
+export function getEndingSoonProducts(products: MoharProduct[]): MoharProduct[] {
+  return products
+    .filter((p) => typeof p.hoursLeft === 'number')
+    .sort((a, b) => (a.hoursLeft ?? 999) - (b.hoursLeft ?? 999));
+}
+
+export function toggleBackedItem(backedIds: string[], productId: string): string[] {
+  if (backedIds.includes(productId)) {
+    return backedIds.filter((id) => id !== productId);
+  }
+  return [...backedIds, productId];
 }
 
 export function validateAuthForm(input: AuthFormInput): AuthValidationResult {
@@ -250,61 +220,6 @@ export function validateAuthForm(input: AuthFormInput): AuthValidationResult {
   };
 }
 
-export function addNoteItem(
-  notes: NoteEntry[],
-  title: string,
-  body: string
-): NoteEntry[] {
-  const cleanTitle = title.trim();
-  const cleanBody = body.trim();
-  if (!cleanTitle || !cleanBody) return notes;
-
-  const nextNote: NoteEntry = {
-    id: `n-${Date.now()}-${notes.length + 1}`,
-    title: cleanTitle,
-    body: cleanBody,
-    updatedAt: 'Just now',
-  };
-  return [nextNote, ...notes];
-}
-
-export function toggleFavoriteItem(favoriteIds: string[], productId: string): string[] {
-  if (favoriteIds.includes(productId)) {
-    return favoriteIds.filter((id) => id !== productId);
-  }
-  return [...favoriteIds, productId];
-}
-
-export function sendMessageItem(
-  messages: MessageEntry[],
-  text: string,
-  senderName = 'You'
-): MessageEntry[] {
-  const cleanText = text.trim();
-  if (!cleanText) return messages;
-  return [
-    ...messages,
-    {
-      id: `m-${Date.now()}-${messages.length + 1}`,
-      sender: senderName,
-      text: cleanText,
-      time: 'Now',
-      fromMe: true,
-    },
-  ];
-}
-
-export interface CreatorApplicationInput {
-  creatorName: string;
-  productTitle: string;
-  goalAmount: string;
-}
-
-export interface CreatorValidationResult {
-  valid: boolean;
-  errors: Partial<Record<'creatorName' | 'productTitle' | 'goalAmount', string>>;
-}
-
 export function validateCreatorForm(
   input: CreatorApplicationInput
 ): CreatorValidationResult {
@@ -324,4 +239,3 @@ export function validateCreatorForm(
     errors,
   };
 }
-
